@@ -1,3 +1,10 @@
+import ProductCard from "../../components/product-card";
+
 export default function ShopPage() {
-  return <h1>Shop Page</h1>;
+  return (
+    <main>
+      <h1>Shop Page</h1>
+      <ProductCard />
+    </main>
+  );
 }

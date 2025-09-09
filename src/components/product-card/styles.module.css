@@ -1,0 +1,9 @@
+form {
+    background-color: purple;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+    height: 300px;
+    place-items: center;
+}
