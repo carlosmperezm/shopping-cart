@@ -15,7 +15,7 @@ beforeEach(() => {
 });
 afterEach(cleanup);
 
-describe("Card Component", () => {
+describe("Product Card Component", () => {
   it("renders correctly", async () => {
     const card = screen.getByRole("form");
     expect(card).toBeInTheDocument();

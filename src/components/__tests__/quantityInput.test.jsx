@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeEach, afterEach } from "vitest";
-import { screen, render, waitFor, cleanup, act } from "@testing-library/react";
+import { screen, render, cleanup, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as matcher from "@testing-library/jest-dom/matchers";
 import QuantityInput from "../quantity-input";
