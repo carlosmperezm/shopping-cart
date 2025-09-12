@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { screen, render, cleanup } from "@testing-library/react";
 import * as matchers from "@testing-library/jest-dom/matchers";
 import Cart from "../cart";

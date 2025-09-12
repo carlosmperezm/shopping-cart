@@ -34,8 +34,8 @@ describe("NavBar component", () => {
     const user = userEvent.setup();
     const navbar = screen.getByRole("navigation");
     const links = getAllByRole(navbar, "link");
-    links.forEach((link) => {
-      act(async () => await user.click(link));
+    links.forEach(async (link) => {
+      await act(async () => await user.click(link));
       expect(navbar).toBeInTheDocument();
     });
   });

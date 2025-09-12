@@ -1,12 +1,15 @@
+import { useState } from "react";
 import NavBar from "./components/navbar";
 import { Outlet } from "react-router";
+import { products } from "./data/cart-items";
 
 export default function App() {
+  const [productsInCart, setProductsInCart] = useState(products);
   return (
     <>
-      <NavBar />
+      <NavBar productsInCart={productsInCart} />
       <div id="content">
-        <Outlet />
+        <Outlet context={[productsInCart, setProductsInCart]} />
       </div>
     </>
   );

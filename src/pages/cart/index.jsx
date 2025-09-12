@@ -1,3 +1,12 @@
+import Cart from "../../components/cart";
+import { useOutletContext } from "react-router";
+
 export default function CartPage() {
-  return <h1>Cart Page</h1>;
+  const cartItems = useOutletContext()[0];
+  return (
+    <main>
+      <h1>Cart Page</h1>
+      <Cart items={cartItems} />
+    </main>
+  );
 }
