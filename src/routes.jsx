@@ -7,20 +7,20 @@ import ErrorPage from "./pages/error/index.jsx";
 const routes = [
   {
     path: "/",
-    element: <App />,
+    Component: App,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "/home",
-        element: <Home />,
+        Componet: Home,
       },
       {
         path: "/shop",
-        element: <ShopPage />,
+        Component: ShopPage,
       },
       {
         path: "/cart",
-        element: <CartPage />,
+        Component: CartPage,
       },
     ],
   },

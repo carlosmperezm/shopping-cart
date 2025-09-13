@@ -7,22 +7,20 @@ import {
   waitFor,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter, Route, Routes } from "react-router";
-import NavBar from "../navbar";
+import { createRoutesStub } from "react-router";
 import * as matchers from "@testing-library/jest-dom/matchers";
 import { products } from "../../data/cart-items";
+import routes from "../../routes";
 
 expect.extend(matchers);
+
+const Stub = createRoutesStub(routes);
 
 afterEach(() => cleanup());
 
 describe("NavBar component", () => {
   it("renders correctly", () => {
-    render(
-      <MemoryRouter>
-        <NavBar productsInCart={products} />
-      </MemoryRouter>
-    );
+    render(<Stub initialEntries={["/"]} />);
     const navbar = screen.getByRole("navigation");
     expect(navbar).toBeInTheDocument();
     const links = getAllByRole(navbar, "link");
@@ -30,11 +28,7 @@ describe("NavBar component", () => {
   });
   it("stays after links are clicked", () => {
     const user = userEvent.setup();
-    render(
-      <MemoryRouter>
-        <NavBar productsInCart={products} />
-      </MemoryRouter>
-    );
+    render(<Stub initialEntries={["/"]} />);
     const navbar = screen.getByRole("navigation");
     const links = getAllByRole(navbar, "link");
     links.forEach(async (link) => {
@@ -43,11 +37,7 @@ describe("NavBar component", () => {
     });
   });
   it("shows number of items in the cart", () => {
-    render(
-      <MemoryRouter>
-        <NavBar productsInCart={products} />
-      </MemoryRouter>
-    );
+    render(<Stub initialEntries={["/"]} />);
     const cartLink = screen.getByRole("link", {
       name: "Cart " + products.length,
     });
