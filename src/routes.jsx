@@ -12,7 +12,7 @@ const routes = [
     children: [
       {
         path: "/home",
-        Componet: Home,
+        Component: Home,
       },
       {
         path: "/shop",

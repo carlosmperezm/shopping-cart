@@ -1,11 +1,5 @@
 import { describe, it, expect, afterEach } from "vitest";
-import {
-  render,
-  screen,
-  getAllByRole,
-  cleanup,
-  waitFor,
-} from "@testing-library/react";
+import { render, screen, getAllByRole, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import * as matchers from "@testing-library/jest-dom/matchers";
@@ -26,13 +20,13 @@ describe("NavBar component", () => {
     const links = getAllByRole(navbar, "link");
     links.forEach((link) => expect(link).toBeInTheDocument());
   });
-  it.only("stays after links are clicked", () => {
+  it("stays after links are clicked", async () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
     const navbar = screen.getByRole("navigation");
     const links = getAllByRole(navbar, "link");
     for (const link of links) {
-      waitFor(async () => await user.click(link));
+      await user.click(link);
       expect(navbar).toBeInTheDocument();
     }
   });
