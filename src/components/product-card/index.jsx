@@ -14,7 +14,7 @@ export default function ProductCard({ product, handleSubmit }) {
       }}
     >
       <div>
-        <h2>{product.name}</h2>
+        <h2>{product.title}</h2>
       </div>
       <QuantityInput />
       <AddToCartButton />
