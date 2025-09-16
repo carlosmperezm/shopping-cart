@@ -1,14 +1,60 @@
 import { describe, it, expect, afterEach } from "vitest";
 import { render, screen, getAllByRole, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { createMemoryRouter, RouterProvider } from "react-router";
+import { createMemoryRouter, Outlet, RouterProvider } from "react-router";
 import * as matchers from "@testing-library/jest-dom/matchers";
-import { products } from "../../data/cart-items";
-import routes from "../../routes";
+import Home from "../../pages/home";
+import ShopPage from "../../pages/shop";
+import CartPage from "../../pages/cart";
+import ErrorPage from "../../pages/error";
+import { useState } from "react";
+import NavBar from "../navbar";
 
 expect.extend(matchers);
 
-const router = createMemoryRouter(routes);
+const mockProducts = [
+  { id: 1, title: "Apple", price: 0.99 },
+  { id: 2, title: "Banana", price: 0.59 },
+  { id: 3, title: "Orange", price: 0.79 },
+];
+function MockApp() {
+  /*
+  Does not pull data from the api
+   */
+  // Mock products in the cart
+  const [productsInCart, setProductsInCart] = useState(mockProducts);
+  return (
+    <>
+      <NavBar productsInCart={productsInCart} />
+      <div id="content">
+        <Outlet context={[productsInCart, setProductsInCart]} />
+      </div>
+    </>
+  );
+}
+const mockRoutes = [
+  {
+    path: "/",
+    Component: MockApp,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/home",
+        Component: Home,
+      },
+      {
+        path: "/shop",
+        Component: ShopPage,
+      },
+      {
+        path: "/cart",
+        Component: CartPage,
+      },
+    ],
+  },
+];
+
+const router = createMemoryRouter(mockRoutes);
 
 afterEach(() => cleanup());
 
@@ -33,7 +79,7 @@ describe("NavBar component", () => {
   it("shows number of items in the cart", () => {
     render(<RouterProvider router={router} />);
     const cartLink = screen.getByRole("link", {
-      name: "Cart " + products.length,
+      name: "Cart " + mockProducts.length,
     });
     expect(cartLink).toBeInTheDocument();
   });
