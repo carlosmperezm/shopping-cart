@@ -1,37 +1,68 @@
 import { describe, it, expect, afterEach, beforeEach } from "vitest";
 import { cleanup, screen, render } from "@testing-library/react";
 import * as matchers from "@testing-library/jest-dom/matchers";
-import { MemoryRouter, Outlet, Route, Routes } from "react-router";
+import {
+  createMemoryRouter,
+  Outlet,
+  RouterProvider,
+  useOutletContext,
+} from "react-router";
 import ProductCard from "../product-card";
 
-const products = [
-  { id: 1, name: "Apple", price: 0.99 },
-  { id: 2, name: "Banana", price: 0.59 },
-  { id: 3, name: "Orange", price: 0.79 },
-];
+const testProducts = [{ id: 2, title: "Banana", price: 0.59 }];
 
 expect.extend(matchers);
 
-function App() {
-  // App mock with a mocked Outtlet component so that useOutletContext
-  // does not throw and error
+function MockApp() {
+  // Mock App component to render only
+  // the children component with outlet context
   return (
     <>
-      <Outlet context={products} />
+      <Outlet context={testProducts} />
     </>
   );
 }
 
-beforeEach(() => {
-  render(
-    <MemoryRouter initialEntries={["/"]}>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<ProductCard product={products[0]} />} />
-        </Route>
-      </Routes>
-    </MemoryRouter>
+function MockShopPage() {
+  // Mock Shop Page so that no products are pulled from the api
+  const products = testProducts;
+  const saveProducts = useOutletContext()[1];
+  return (
+    <main>
+      <h1>Shop Page</h1>
+      {products ? (
+        products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            handleSubmit={saveProducts}
+          />
+        ))
+      ) : (
+        <h3>Loading...</h3>
+      )}
+    </main>
   );
+}
+const mockRoutes = [
+  // Mock routes to recreate the same components hierarchy but
+  // with the mock components instead
+  {
+    path: "/",
+    Component: MockApp,
+    children: [
+      {
+        path: "/shop",
+        Component: MockShopPage,
+      },
+    ],
+  },
+];
+
+const router = createMemoryRouter(mockRoutes, { initialEntries: ["/shop"] });
+
+beforeEach(() => {
+  render(<RouterProvider router={router} />);
 });
 
 afterEach(cleanup);
@@ -42,7 +73,9 @@ describe("Product Card Component", () => {
     expect(card).toBeInTheDocument();
   });
   it("displays a title", () => {
-    const heading = screen.getByRole("heading", { name: products[0].name });
+    const heading = screen.getByRole("heading", {
+      name: testProducts[0].title,
+    });
     expect(heading).toBeInTheDocument();
   });
   it("displays product's quantity", () => {
