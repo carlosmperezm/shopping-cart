@@ -1,10 +1,9 @@
 import { useState } from "react";
 import NavBar from "./components/navbar";
 import { Outlet } from "react-router";
-import { products } from "./hooks/useProducts";
 
 export default function App() {
-  const [productsInCart, setProductsInCart] = useState(products);
+  const [productsInCart, setProductsInCart] = useState([]);
   return (
     <>
       <NavBar productsInCart={productsInCart} />
