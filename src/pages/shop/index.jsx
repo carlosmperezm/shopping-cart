@@ -3,10 +3,8 @@ import ProductCard from "../../components/product-card";
 import useProducts from "../../hooks/useProducts";
 
 export default function ShopPage() {
-  // const product = { name: "test", id: 1 };
   const products = useProducts();
   const saveProducts = useOutletContext()[1];
-  //TODO: Bring the data from the APi
   return (
     <main>
       <h1>Shop Page</h1>
@@ -21,7 +19,6 @@ export default function ShopPage() {
       ) : (
         <h3>Loading...</h3>
       )}
-      {console.log(products)}
     </main>
   );
 }
