@@ -1,25 +1,29 @@
 import "./styles.module.css";
-import { useState } from "react";
 
-export default function QuantityInput() {
-  const [quantity, setQuantity] = useState(1);
+export default function QuantityInput({ product, setProduct }) {
   return (
     <div>
       <button
         type="button"
-        onClick={() => (quantity > 1 ? setQuantity(quantity - 1) : quantity)}
+        onClick={() =>
+          product.quantity > 1 &&
+          setProduct({ ...product, quantity: product.quantity - 1 })
+        }
       >
         -
       </button>
       <input
         type="number"
-        value={quantity}
+        value={product.quantity}
         min={1}
-        onChange={(e) =>
-          e.target.value > 1 ? setQuantity(e.target.value) : setQuantity(1)
-        }
+        onChange={(e) => setProduct({ ...product, quantity: e.target.value })}
       />
-      <button type="button" onClick={() => setQuantity(quantity + 1)}>
+      <button
+        type="button"
+        onClick={() =>
+          setProduct({ ...product, quantity: product.quantity + 1 })
+        }
+      >
         +
       </button>
     </div>
