@@ -12,7 +12,7 @@ export default function ShopPage() {
         products.map((product) => (
           <ProductCard
             key={product.id}
-            product={product}
+            productData={product}
             handleSubmit={saveProducts}
           />
         ))
