@@ -10,7 +10,20 @@ export default function ProductCard({ product, handleSubmit }) {
       aria-label="product-card"
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit([...productsInCart, product]);
+        const productInCart = productsInCart.find(
+          (prod) => prod.id === product.id
+        );
+        if (productInCart) {
+          const quantity = productInCart.quantity + 1;
+          const productToSave = { ...product, quantity };
+          const newProducts = productsInCart.filter(
+            (prod) => prod.id !== productInCart.id
+          );
+          handleSubmit([...newProducts, productToSave]);
+        } else {
+          const productToSave = { ...product, quantity: 1 };
+          handleSubmit([...productsInCart, productToSave]);
+        }
       }}
     >
       <div>
