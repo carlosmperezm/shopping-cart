@@ -2,9 +2,11 @@ import "./styles.module.css";
 import QuantityInput from "../quantity-input";
 import AddToCartButton from "../add-to-cart-button";
 import { useOutletContext } from "react-router";
+import { useState } from "react";
 
-export default function ProductCard({ product, handleSubmit }) {
+export default function ProductCard({ productData, handleSubmit }) {
   const productsInCart = useOutletContext()[0];
+  const [product, setProduct] = useState({ ...productData, quantity: 1 });
   return (
     <form
       aria-label="product-card"
@@ -13,15 +15,13 @@ export default function ProductCard({ product, handleSubmit }) {
         const productInCart = productsInCart.find(
           (prod) => prod.id === product.id
         );
+        const productToSave = { ...product, quantity: product.quantity };
         if (productInCart) {
-          const quantity = productInCart.quantity + 1;
-          const productToSave = { ...product, quantity };
           const newProducts = productsInCart.filter(
             (prod) => prod.id !== productInCart.id
           );
           handleSubmit([...newProducts, productToSave]);
         } else {
-          const productToSave = { ...product, quantity: 1 };
           handleSubmit([...productsInCart, productToSave]);
         }
       }}
@@ -29,7 +29,7 @@ export default function ProductCard({ product, handleSubmit }) {
       <div>
         <h2>{product.title}</h2>
       </div>
-      <QuantityInput />
+      <QuantityInput product={product} setProduct={setProduct} />
       <AddToCartButton />
     </form>
   );
