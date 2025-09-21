@@ -17,13 +17,24 @@ export default function Cart() {
               <QuantityInput
                 product={item}
                 setProduct={(updatedProduct) => {
-                  const productsWithoutCurrentProduct = productsInCart.filter(
-                    (prod) => prod.id !== item.id
-                  );
-                  setProductsInCart([
-                    ...productsWithoutCurrentProduct,
-                    updatedProduct,
-                  ]);
+                  const updatedProducts = [];
+                  productsInCart.forEach((prod) => {
+                    if (prod.id === item.id) {
+                      updatedProducts.push(updatedProduct);
+                    } else {
+                      updatedProducts.push(prod);
+                    }
+                  });
+                  setProductsInCart(updatedProducts);
+
+                  // const productsWithoutCurrentProduct = productsInCart.filter(
+                  //   (prod) => prod.id !== item.id
+                  // );
+
+                  // setProductsInCart([
+                  //   ...productsWithoutCurrentProduct,
+                  //   updatedProduct,
+                  // ]);
                 }}
               />
             </label>
