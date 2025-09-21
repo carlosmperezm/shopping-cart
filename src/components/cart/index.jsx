@@ -26,15 +26,6 @@ export default function Cart() {
                     }
                   });
                   setProductsInCart(updatedProducts);
-
-                  // const productsWithoutCurrentProduct = productsInCart.filter(
-                  //   (prod) => prod.id !== item.id
-                  // );
-
-                  // setProductsInCart([
-                  //   ...productsWithoutCurrentProduct,
-                  //   updatedProduct,
-                  // ]);
                 }}
               />
             </label>
