@@ -20,6 +20,10 @@ export default function ProductCard({ productData, handleSubmit }) {
           const productsWithoutCurrentProduct = productsInCart.filter(
             (prod) => prod.id !== productInCart.id
           );
+          product.quantity === productInCart.quantity &&
+            alert(
+              "Product with this quantity is already in the cart. Please change the quantity to add more of this product"
+            );
           handleSubmit([...productsWithoutCurrentProduct, productToSave]);
         } else {
           handleSubmit([...productsInCart, productToSave]);
