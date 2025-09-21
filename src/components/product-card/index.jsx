@@ -16,6 +16,7 @@ export default function ProductCard({ productData, handleSubmit }) {
           (prod) => prod.id === product.id
         );
         const productToSave = { ...product, quantity: product.quantity };
+        const productToSave = { ...product, quantity: product.quantity };
         if (productInCart) {
           const productsWithoutCurrentProduct = productsInCart.filter(
             (prod) => prod.id !== productInCart.id
