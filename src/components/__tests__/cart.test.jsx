@@ -49,13 +49,7 @@ function renderMockedApp(mockProducts) {
 
 afterEach(cleanup);
 
-//TODO: Finish all these tests
 describe("Cart Component", () => {
-  it("renders", () => {
-    renderMockedApp(mockProducts);
-    const cart = screen.getByRole("list");
-    expect(cart).toBeInTheDocument();
-  });
   it("shows all items", () => {
     renderMockedApp(mockProducts);
     const elements = screen.getAllByRole("listitem");

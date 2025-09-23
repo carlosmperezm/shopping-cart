@@ -4,32 +4,33 @@ import AddToCartButton from "../add-to-cart-button";
 import { useOutletContext } from "react-router";
 import { useState } from "react";
 
-export default function ProductCard({ productData, handleSubmit }) {
-  const productsInCart = useOutletContext()[0];
+export default function ProductCard({ productData }) {
+  const [productsInCart, saveProducts] = useOutletContext();
   const [product, setProduct] = useState({ ...productData, quantity: 1 });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    let productInCart;
+    const productsWithoutCurrentProduct = [];
+    const productToSave = { ...product, quantity: product.quantity };
+
+    for (const prod of productsInCart) {
+      prod.id === product.id
+        ? (productInCart = prod)
+        : productsWithoutCurrentProduct.push(prod);
+    }
+    if (productInCart && product.quantity === productInCart.quantity) {
+      alert(
+        "Product with this quantity is already in the cart. Please change the quantity"
+      );
+    } else if (productInCart) {
+      saveProducts([...productsWithoutCurrentProduct, productToSave]);
+    } else {
+      saveProducts([...productsInCart, productToSave]);
+    }
+  }
   return (
-    <form
-      aria-label="product-card"
-      onSubmit={(e) => {
-        e.preventDefault();
-        const productInCart = productsInCart.find(
-          (prod) => prod.id === product.id
-        );
-        const productToSave = { ...product, quantity: product.quantity };
-        if (productInCart) {
-          const productsWithoutCurrentProduct = productsInCart.filter(
-            (prod) => prod.id !== productInCart.id
-          );
-          product.quantity === productInCart.quantity &&
-            alert(
-              "Product with this quantity is already in the cart. Please change the quantity to add more of this product"
-            );
-          handleSubmit([...productsWithoutCurrentProduct, productToSave]);
-        } else {
-          handleSubmit([...productsInCart, productToSave]);
-        }
-      }}
-    >
+    <form aria-label="product-card" onSubmit={handleSubmit}>
       <div>
         <h2>{product.title}</h2>
       </div>

@@ -59,7 +59,7 @@ const router = createMemoryRouter(mockRoutes);
 afterEach(() => cleanup());
 
 describe("NavBar component", () => {
-  it("renders correctly", () => {
+  it("displays the links", () => {
     render(<RouterProvider router={router} />);
     const navbar = screen.getByRole("navigation");
     expect(navbar).toBeInTheDocument();
