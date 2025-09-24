@@ -1,9 +1,11 @@
 form {
-    background-color: purple;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 250px;
     height: 300px;
     place-items: center;
+    padding: 1rem;
 }

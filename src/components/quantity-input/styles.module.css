@@ -1,0 +1,8 @@
+div {
+    display: flex;
+    background-color: red;
+}
+
+button {
+    background-color: var(--primary-color)
+}

@@ -1,4 +1,5 @@
 import "./styles.module.css";
+import "../../colors.module.css";
 import QuantityInput from "../quantity-input";
 import AddToCartButton from "../add-to-cart-button";
 import { useOutletContext } from "react-router";
