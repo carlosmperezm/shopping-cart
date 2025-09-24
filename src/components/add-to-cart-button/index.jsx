@@ -1,3 +1,9 @@
+import styles from "./styles.module.css";
+
 export default function AddToCartButton() {
-  return <button type="submit">Add to the cart</button>;
+  return (
+    <button className={styles.button} type="submit">
+      Add to the cart
+    </button>
+  );
 }

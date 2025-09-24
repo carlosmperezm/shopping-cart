@@ -1,0 +1,10 @@
+.button {
+    background-color: var(--primary-color);
+}
+
+.button:hover,
+.button:focus {
+    border: 1px solid var(--primary-color);
+    /* outline: 1px solid var(--primary-color); */
+    background-color: transparent;
+}

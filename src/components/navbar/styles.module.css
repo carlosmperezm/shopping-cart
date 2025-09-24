@@ -1,10 +1,13 @@
-nav {
+.navbar {
     display: flex;
     width: 100dvw;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: end;
     gap: 2rem;
     position: fixed;
     top: 0;
-    background-color: lightgreen;
-    padding: .5rem;
+    height: 50px;
+    background-color: var(--primary-color);
+    padding: 0.2rem;
+    z-index: 1;
 }
