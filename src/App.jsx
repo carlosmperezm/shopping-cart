@@ -10,6 +10,10 @@ export default function App() {
       <div id="content">
         <Outlet context={[productsInCart, setProductsInCart]} />
       </div>
+      {/* Redirect to the home page */}
+      {window.location.pathname == "/"
+        ? (window.location.pathname = "/home")
+        : null}
     </>
   );
 }

@@ -1,6 +1,6 @@
-form {
-    background-color: var(--secondary-color);
-    color: var(--white-color);
+.productCard {
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--primary-color);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -8,4 +8,19 @@ form {
     min-height: 300px;
     place-items: center;
     padding: 1rem;
+    border-radius: var(--radius);
+    gap: 1rem;
+}
+
+.productImg {
+    width: 200px;
+    height: 100%;
+}
+
+.imgContainer {
+    background-color: var(--secondary-color);
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
 }

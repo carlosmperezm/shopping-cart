@@ -1,5 +1,5 @@
 :root {
-    --background-color1: #E9E3DF;
+    --background-color1: #d6d5cf;
     --backgroung-color2: #242424;
     --primary-color: #FF6500;
     --secondary-color: #DCD7C9;
@@ -9,7 +9,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --background-color1: #242424;
-        --backgroung-color2: #E9E3DF;
+        --backgroung-color2: #d6d5cf;
         --primary-color: #FF6500;
         --secondary-color: #222831;
         --tertiary-color: #393E46;
