@@ -41,6 +41,7 @@ export default function ProductCard({ productData }) {
         <img className={styles.productImg} src={product.image} />
       </div>
       <p className={styles.productTitle}>{product.title}</p>
+      <p>${product.price}</p>
       <QuantityInput product={product} setProduct={setProduct} />
       <AddToCartButton />
     </form>

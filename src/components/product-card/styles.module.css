@@ -1,5 +1,8 @@
 .productCard {
-    background-color: var(--tertiary-color);
+    /* background-color: var(--tertiary-color); */
+    /* background-color: #ddd8; */
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--primary-color);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -22,8 +25,4 @@
     height: 250px;
     display: flex;
     justify-content: center;
-}
-
-.productTitle {
-    height: 70px;
 }
