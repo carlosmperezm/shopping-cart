@@ -1,8 +1,8 @@
 .link {
-    color: var(--white-color);
+    color: var(--primary-color);
     font-size: 1.3rem
 }
 
 .link:hover {
-    color: var(--secondary-color)
+    color: var(--background-color2);
 }
