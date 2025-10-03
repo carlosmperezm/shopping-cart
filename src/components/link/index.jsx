@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import "../../colors.module.css";
+// import "../../colors.module.css";
 import { NavLink } from "react-router";
 
 export default function Link({ children, to, itemsQuantity }) {

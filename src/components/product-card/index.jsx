@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import "../../colors.module.css";
+// import "../../colors.module.css";
 import "../../measures.module.css";
 import QuantityInput from "../quantity-input";
 import AddToCartButton from "../add-to-cart-button";
@@ -23,7 +23,7 @@ export default function ProductCard({ productData }) {
     }
     if (productInCart && product.quantity === productInCart.quantity) {
       alert(
-        "Product with this quantity is already in the cart. Please change the quantity"
+        "Product with this quantity is already in the cart. Please change the quantity",
       );
     } else if (productInCart) {
       saveProducts([...productsWithoutCurrentProduct, productToSave]);

@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import "../../colors.module.css";
+// import "../../colors.module.css";
 import Link from "../link";
 import { ShoppingCart } from "lucide-react";
 import { House } from "lucide-react";
